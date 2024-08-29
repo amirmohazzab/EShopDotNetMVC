@@ -18,7 +18,9 @@ namespace Eshop.Ioc.Container
 
             #region Services
 
-                services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IUserService, UserService>();
+
 
             #endregion
 

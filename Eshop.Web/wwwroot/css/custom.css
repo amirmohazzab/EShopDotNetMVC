@@ -31,3 +31,7 @@
 .nice-file-upload .icon i{
     color:#ffffff;
 }
+
+.field-validation-error{
+    color: red !important;
+}

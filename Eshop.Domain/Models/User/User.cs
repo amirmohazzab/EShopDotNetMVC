@@ -26,9 +26,8 @@ namespace Eshop.Domain.Models.User
         public string Mobile { get; set; }
 
         [Display(Name = "ایمیل")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(350, ErrorMessage = "تعداد کاراکتر وارد شده بیش از حد مجاز است")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

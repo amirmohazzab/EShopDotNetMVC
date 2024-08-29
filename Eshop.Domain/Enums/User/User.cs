@@ -8,8 +8,8 @@ namespace Eshop.Domain.Enums.User
 {
     public enum UserStatus
     {
-        Active,
         NotActive,
+        Active,
         Banned
     }
 }
