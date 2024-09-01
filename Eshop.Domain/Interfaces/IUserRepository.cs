@@ -18,5 +18,9 @@ namespace Eshop.Domain.Interfaces
         Task<User?> GetUserByMobileAndPasswordAsync(string mobile, string password);
 
         Task<User?> GetUserByMobileAsync(string mobile);
+
+        Task<User?> GetByMobileAndConfirmCode(string mobile, string confirmCode);
+
+        void Update(User user);
     }
 }

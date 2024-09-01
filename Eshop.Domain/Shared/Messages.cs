@@ -8,8 +8,10 @@ namespace Eshop.Domain.Shared
 {
     public class SuccessMessages
     {
-        #region Register
+        #region Account
         public static string RegisterSuccessfullyDone = "ثبت نام شما با موفقیت انجام شد";
+        public static string ForgotPasswordSuccessfullyDone = "کد تایید برای شماره موبایل شما ارسال شد";
+        public static string ResetPasswordSuccessfullyDone = "تغییر کلمه عبور شما با موفقیت انجام شد";
         #endregion
 
     }

@@ -20,13 +20,14 @@ namespace Eshop.Ioc.Container
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISmsSendersService, SmsSendersService>();
 
 
             #endregion
 
             #region Repositories
 
-                services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             #endregion
         }

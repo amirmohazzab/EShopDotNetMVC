@@ -15,4 +15,8 @@
     <Folder Include="Extension\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="kavenegar" Version="1.2.4" />
+  </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
+using Eshop.Application.Statics;
 using Eshop.Data.Context;
 using Eshop.Ioc.Container;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -32,6 +33,11 @@ builder.Services.AddSingleton<HtmlEncoder>(
     HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
         UnicodeRanges.Arabic }));
 
+#endregion
+
+#region Config Kavenegar Api
+
+builder.Configuration.GetSection("KavenegarSms").Get<KavenegarStatics>();
 #endregion
 
 #region Authentication

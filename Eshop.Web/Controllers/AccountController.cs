@@ -23,6 +23,9 @@ namespace Eshop.Web.Controllers
         [HttpGet("/register")]
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             return View();
         }
 
@@ -60,6 +63,9 @@ namespace Eshop.Web.Controllers
         [HttpGet("/login")]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             return View();
         }
 
@@ -129,6 +135,105 @@ namespace Eshop.Web.Controllers
         }
 
         #endregion
+
+        #region Logout
+
+        [HttpGet("/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction(nameof(Login));
+        }
+
+        #endregion
+
+        #region Forgot Password
+
+        [HttpGet("/forgot-password")]
+        public IActionResult ForgotPassword()
+        {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
+            return View();
+        }
+
+        [HttpPost("/forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            #region Validations
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            #endregion
+
+            ForgotPasswordViewModel.ForgotPasswordResult result = await accountService.ForgotPasswordAsync(model);
+
+            switch (result)
+            {
+                case ForgotPasswordViewModel.ForgotPasswordResult.Success:
+                    TempData["Mobile"] = model.Mobile;
+                    TempData[SuccessMessage] = SuccessMessages.ForgotPasswordSuccessfullyDone;
+                    return RedirectToAction(nameof(ResetPassword));
+
+                case ForgotPasswordViewModel.ForgotPasswordResult.MobileNotFound:
+                    TempData[ErrorMessage] = ErrorMessages.UserNotFound;
+                    return RedirectToAction(nameof(ForgotPassword));
+
+                case ForgotPasswordViewModel.ForgotPasswordResult.Error:
+                    TempData[ErrorMessage] = ErrorMessages.OperationFailed;
+                    return RedirectToAction(nameof(ForgotPassword));
+            }
+
+            return View(model);
+        }
+
+        #endregion
+
+        #region Reset Password
+
+        [HttpGet("/reset-password")]
+        public IActionResult ResetPassword()
+        {
+            string mobile = TempData["Mobile"]?.ToString();
+
+            if (string.IsNullOrEmpty(mobile))
+                return NotFound();
+
+            return View(new ResetPasswordViewModel() { Mobile = mobile });
+        }
+
+        [HttpPost("/reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            #region Validations
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            #endregion
+
+            ResetPasswordResult result = await accountService.ResetPasswordAsync(model);
+
+            switch (result)
+            {
+                case ResetPasswordResult.Success:
+                    TempData[SuccessMessage] = SuccessMessages.ResetPasswordSuccessfullyDone;
+                    return RedirectToAction(nameof(Login));
+
+                case ResetPasswordResult.UserNotFound:
+                    TempData[ErrorMessage] = ErrorMessages.UserNotFound;
+                    return RedirectToAction(nameof(ForgotPassword));
+            }
+
+
+            return View(model);
+        }
+
+
+        #endregion 
 
         #endregion
 

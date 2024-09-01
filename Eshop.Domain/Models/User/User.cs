@@ -34,6 +34,10 @@ namespace Eshop.Domain.Models.User
         [MaxLength(400, ErrorMessage = "تعداد کاراکتر وارد شده بیش از حد مجاز است")]
         public string Password { get; set; }
 
+        [Display(Name = "کد تایید")]
+        [MaxLength(12, ErrorMessage = "تعداد کاراکتر وارد شده بیش از حد مجاز است")]
+        public string? ConfirmCode { get; set; }
+
         public UserStatus Status { get; set; }
 
         #endregion

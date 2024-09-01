@@ -37,5 +37,15 @@ namespace Eshop.Data.Implementations
         {
             return await context.Users.FirstOrDefaultAsync(u => u.Mobile == mobile);
         }
+
+        public async Task<User?> GetByMobileAndConfirmCode(string mobile, string confirmCode)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Mobile == mobile && u.ConfirmCode == confirmCode);
+        }
+
+        public void Update(User user)
+        {
+            context.Users.Update(user);
+        }
     }
 }
