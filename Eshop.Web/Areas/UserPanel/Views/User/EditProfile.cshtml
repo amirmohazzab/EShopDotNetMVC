@@ -1,0 +1,40 @@
+﻿@model Eshop.Domain.ViewModels.User.EditUserProfileViewModel
+
+@{
+    ViewData["Title"] = "ویرایش حساب کاربری";
+}
+
+
+<div class="ui-box bg-white mb-5">
+    <div class="ui-box-title">@ViewData["Title"]</div>
+    <div class="ui-box-content">
+        <form asp-area="UserPanel" asp-controller="User" asp-action="EditProfile" method="post">
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <div class="py-2">
+                        <label asp-for="FirstName" class="form-label"></label>
+                        <input asp-for="FirstName" class="form-control" type="text"/>
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="py-2">
+                        <label asp-for="LastName" class="form-label"></label>
+                        <input asp-for="LastName" class="form-control" type="text" />
+                        <span asp-validation-for="LastName"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="py-2">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" type="email" />
+                        <span asp-validation-for="Email"></span> 
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                   <button type="submit" class="btn btn-primary">ویرایش</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

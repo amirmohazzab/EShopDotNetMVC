@@ -47,5 +47,10 @@ namespace Eshop.Data.Implementations
         {
             context.Users.Update(user);
         }
+
+        public async Task<User?> GetByIdAsync(int id)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
     }
 }

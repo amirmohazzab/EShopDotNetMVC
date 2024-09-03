@@ -24,7 +24,7 @@ namespace Eshop.Web.Controllers
         public IActionResult Register()
         {
             if (User.Identity.IsAuthenticated)
-                return Redirect("/");
+                return RedirectToAction("Index", "Home", new { area = "UserPanel" });
 
             return View();
         }
@@ -64,7 +64,7 @@ namespace Eshop.Web.Controllers
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
-                return Redirect("/");
+                return RedirectToAction("Index", "Home", new { area = "UserPanel" });
 
             return View();
         }
@@ -114,7 +114,7 @@ namespace Eshop.Web.Controllers
 
                     #endregion
                     TempData[SuccessMessage] = "خوش آمدید";
-                    return Redirect("/");
+                    return RedirectToAction("Index", "Home", new { area = "UserPanel" });
 
                     
 
@@ -154,7 +154,7 @@ namespace Eshop.Web.Controllers
         public IActionResult ForgotPassword()
         {
             if (User.Identity.IsAuthenticated)
-                return Redirect("/");
+                return RedirectToAction("Index", "Home", new { area = "UserPanel" });
 
             return View();
         }

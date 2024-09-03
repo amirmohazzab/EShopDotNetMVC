@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <partial name="_MetaTags"/>
+    <title>@ViewBag.Title | فروشگاه یکتا کالا</title>
+    <partial name="_StyleReferences"/>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- start of page-header -->
+        <partial name="_Header"/>
+        <!-- end of page-header -->
+        <partial name="_HeaderResponsive" />
+        <!-- start of page-content -->
+        <main class="page-content">
+            <div class="container">
+                <div class="row mb-5">
+                    @await Component.InvokeAsync("UserPanelSideBar")
+                    <div class="col-xl-9 col-lg-8 col-md-7">
+                       @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- end of page-content -->
+       <partial name="_Footer"/>
+    </div>
+    <partial name="_JsReferences"/>
+    <partial name="_SiteNotification" />
+    @RenderSection("Scripts", false)
+</body>
+</html>

@@ -22,5 +22,7 @@ namespace Eshop.Domain.Interfaces
         Task<User?> GetByMobileAndConfirmCode(string mobile, string confirmCode);
 
         void Update(User user);
+
+        Task<User?> GetByIdAsync(int id);
     }
 }

@@ -14,6 +14,11 @@ namespace Eshop.Domain.Shared
         public static string ResetPasswordSuccessfullyDone = "تغییر کلمه عبور شما با موفقیت انجام شد";
         #endregion
 
+        #region User
+        public static string UpdateProfileSuccessfullyDone = "ویرایش حساب کاربری شما با موفقیت انجام شد";
+
+        #endregion
+
     }
 
     public class ErrorMessages
